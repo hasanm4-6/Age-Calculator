@@ -97,20 +97,16 @@
         function fun(e) {
             e.preventDefault()
             let DOB = document.getElementById("date").value
-            // console.log(DOB)
 
             let date = new Date()
             let currYear = date.getFullYear()
             let currMonth = date.getMonth() + 1
             let currDay = date.getDate()
 
-            // console.log(`${currYear}-${currMonth}-${currDay}`)
-
             let DOBArr = DOB.split("-").map(Number)
 
             let currDayArr = [currYear,currMonth,currDay]
 
-            // console.log(currDayArr)
 
             let ageYear =  currDayArr[0] - DOBArr[0]
             let ageMonth = currDayArr[1] - DOBArr[1]
@@ -125,7 +121,6 @@
                 ageYear--
             }
 
-            // console.log(`${ageYear} years, ${ageMonth} months, ${ageDay} days`)
             document.getElementById("result").textContent = `You are ${ageYear} years, ${ageMonth} months, and ${ageDay} days old.`
 
         }
