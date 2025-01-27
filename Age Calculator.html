@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        main {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        p {
+            text-align: left;
+        }
+        input{
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            padding: 15px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Age Calculator</h1>
+
+        <form>
+            <p>
+                Select Your Date of Birth
+            </p>
+            <input type="date" id="date" required>
+            <button type="submit">
+                Calculate
+            </button>
+        </form>
+         
+        <div id="result"></div>
+    
+    </main>
+
+    <script>
+
+        addEventListener('submit', fun)
+
+        function fun(e) {
+            e.preventDefault()
+            let DOB = document.getElementById("date").value
+            // console.log(DOB)
+
+            let date = new Date()
+            let currYear = date.getFullYear()
+            let currMonth = date.getMonth() + 1
+            let currDay = date.getDate()
+
+            // console.log(`${currYear}-${currMonth}-${currDay}`)
+
+            let DOBArr = DOB.split("-").map(Number)
+
+            let currDayArr = [currYear,currMonth,currDay]
+
+            // console.log(currDayArr)
+
+            let ageYear =  currDayArr[0] - DOBArr[0]
+            let ageMonth = currDayArr[1] - DOBArr[1]
+            let ageDay = currDayArr[2] - DOBArr[2] 
+
+            if (ageDay < 0) {
+                ageDay += new Date(currDayArr[0], currDayArr[1], 0).getDate()
+                ageMonth--
+            }
+            if (ageMonth < 0) {
+                ageMonth += 12
+                ageYear--
+            }
+
+            // console.log(`${ageYear} years, ${ageMonth} months, ${ageDay} days`)
+            document.getElementById("result").textContent = `You are ${ageYear} years, ${ageMonth} months, and ${ageDay} days old.`
+
+        }
+    </script>
+</body>
+</html>
